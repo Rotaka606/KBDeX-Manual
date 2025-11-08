@@ -1,8 +1,8 @@
-# KBDeX Mannual
+# KBDeX Manual
 HTML files and sample data.
 
 (c) 2025 by Oshima Lab. <br>
-Last modified: 2025.01.06.
+Last modified: 2025.11.08.
 
 ## 基本的な使い方
 Zipファイルをダウンロードし，解凍してお使いください．
