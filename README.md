@@ -1,10 +1,8 @@
 # KBDeX Mannual (version: 250106)
 HTML files and sample data.
 
---README--
 (c) 2025 by Oshima Lab.
 last modified: 2025.01.06.
-----------
 
 ## 基本的な使い方
 「マニュアル」フォルダには，マニュアル本体が収録されています．
