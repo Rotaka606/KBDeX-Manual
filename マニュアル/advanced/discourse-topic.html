@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja" >
+<head>
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  
+  <title>12. 対話トピック (Discourse Topic) の抽出と分析｜KBDeXマニュアル</title>
+</head>
+
+<body>
+  <div id="navigation-window">
+    <nav>
+      <a href="../index.html" class="icon icon-home"><i class="fas fa-home"></i> KBDeX マニュアル</a>
+      <div id="navigation-list">
+        <div class="navigation">
+          <p>基礎編</p>
+          <ol class="index">
+            <li><a href="../basic/introduction.html">はじめに</a></li>
+            <li><a href="../basic/env-setting_java.html">環境設定</a></li>
+            <li><a href="../basic/env-setting_kbdex.html">KBDeXの準備</a></li>
+            <li><a href="../basic/sample-data.html">サンプルデータ</a></li>
+            <li><a href="../basic/data-preperation.html">分析データの準備</a></li>
+            <li><a href="../basic/kbdex-activation.html">KBDeXの起動</a></li>
+            <li><a href="../basic/unit-of-analysis.html">分析単位の設定</a></li>
+            <li><a href="../basic/network-analysis.html">ネットワーク分析</a></li>
+          </ol>
+        </div>        
+
+        <div class="navigation">
+          <p>応用編</p>
+          <ol class="index" start="9">
+            <li><a href="aggregative-model.html">累計モデル</a></li>
+            <li><a href="moving-stanza-window-method.html">Moving Stanza Window Method</a></li>
+            <li><a href="temporal-model.html">時変モデル</a></li>
+            <li><a href="discourse-topic.html">対話トピック</a></li>
+          </ol>
+        </div>
+
+        <div class="navigation">
+          <p><a class="hyperlink" href="../references.html">参考文献リスト</a></p>
+          <p><a class="hyperlink" href="../credit.html">クレジット</a></p>
+        </div>
+        </div>
+        
+    </nav>
+  </div>
+
+  <div id="main-content">
+    <div class="section" id="id1">
+      <h1>12. 対話トピック (Discourse Topic) の抽出と分析<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+    </div>
+
+    <div class="section" id="id2">
+      <h2>12.1.	次数中心性係数の時変パターンによる単語のクラスタ分析<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">  <i class="fas fa-link"></i></a></h2>
+      <p>KBDeXを利用することで，データとして読み込んだ対話内に存在する各単語の次数中心性係数を計算することが可能です．対話ターンが進むごとに変化する次数中心性係数の推移を活用して，対話内容を同じ時系列・同じ文脈で話されているいくつかのトピックに分割することで，対話内容とその変遷について分析することができます．  </p>
+      <p>この「対話トピック (Discourse Topic)」を抽出するために，各単語の次数中心性係数の対話ターンの進行に伴う変化パターンを利用した単語のクラスタ分析を行います．</p>
+      <p>まず，<a class="hyperlink" href="../basic/unit-of-analysis.html">7. 分析単位の設定</a>で紹介した基本的な分析を行う時と同様に[Word]タブから分析対象としたい単語を選択します．この分析手法においては対話全体の内容をトピックとして分割する性質上，全ての名詞単語を選択することを推奨します．</p>
+      <p>次に，グループ全体の次数中心性係数の総和の推移を算出します．「Network – Words」のウィンドウ内からMetricsを選択し（図12-1），表示された「Metrics - Words」内「Activation」下の①「Degree Centrality」と「Open NodeMetricsViewer」下の②「Degree Centrality」にチェックを入れ，③「Chart」を選択します（図12-2）．</p>
+      <a class="reference internal image-reference" href="images/12-1-図表_図01.jpg"><img alt="images/12-1-図表_図01.jpg" src="images/12-1-図表_図01.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-1　Metricsの選択</p>
+      <a class="reference internal image-reference" href="images/12-1-図表_図02.jpg"><img alt="images/12-1-図表_図02.jpg" src="images/12-1-図表_図02.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-2　Metricsでの単語の次数中心性係数の算出</p>
+      <p>「MetricsChartViewer - Word」ウィンドウが表示され，算出された各単語の次数中心性係数からグラフが生成されます（図12-3）．ここで算出された対話ターンの時系列に沿った次数中心性係数の推移のデータに対して，各種統計ソフトを利用してクラスタ分析を行うため，数値データの抽出が必要となります．「Export」から「CSV（be saved to metrics.csv）」を選択し，数値データを保存します．これによって，「metrics.csv」（ファイルは「kbdex/metrics.csv」にあります）として，今回算出した次数中心性係数の総和の数値データが保存されます．このデータを別のフォルダなどにコピーし，残しておきましょう．</p>
+      <a class="reference internal image-reference" href="images/12-1-図表_図03.jpg"><img alt="images/12-1-図表_図03.jpg" src="images/12-1-図表_図03.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-3　計算結果の保存</p>
+      <p>出力した「metrics.csv」に格納されているデータから，各単語に対応する対話ターン毎の次数中心性係数を変数として，ウォード法を利用したクラスタ分析を行います．これによって，次数中心性係数の時変パターンの類似性を単語間の類似性としてクラスタリングを行うことができ，分析対象の対話データにおいて話者がどのような種類の単語を同じ時系列・議論の文脈で扱っていったのか，をデンドログラム上の単語間の距離によって確認することが可能です．サンプルデータを用いて実際にクラスタ分析を行った結果，図4のようなデンドログラムが出力されました．</p>
+      <a class="reference internal image-reference" href="images/12-1-図表_図04.jpg"><img alt="images/12-1-図表_図04.jpg" src="images/12-1-図表_図04.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-4　サンプルデータから出力されたデンドログラム</p>
+      <p>次数中心性係数の時変パターンの類似度によって単語がクラスタ分けされ，近い時系列・文脈で言及された単語が確認できるようになりました．ここから「対話トピック」を抽出します．デンドログラム上の距離が近い単語同士の議論上での意味的な共通性質を確認し，それらがまとまる任意の距離でデンドログラムを分割します（図12-5）．分割した距離以下のクラスタを一つの大きなまとまりとして，これを「対話トピック」と定義します．</p>
+      <p>サンプルデータの分析では便宜上，４つの対話トピックを「対話トピックA〜D」と命名していますが，実際の研究では，分割した対話トピック毎にそこに含まれる単語の意味的な共通性質から対話トピックを命名・定義します．このように抽出された対話トピックの種類や，対話トピック間のデンドログラム上の距離や接続から，結果の解釈を行います（参考研究例：川久保ほか，2021; 2022）． </p>
+
+      <!-- （参考研究例：川久保ほか，2021; 2022）引用設定 -->
+
+      <a class="reference internal image-reference" href="images/12-1-図表_図05.jpg"><img alt="images/12-1-図表_図05.jpg" src="images/12-1-図表_図05.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-5　サンプルデータの対話トピック分割例</p>
+    </div>
+
+    <div class="section" id="id3">
+      <h2>12.2.	対話トピックの時間的推移の分析<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">  <i class="fas fa-link"></i></a></h2>
+      <p>クラスタ分析を元基に意味的なまとまりから「対話トピック」を抽出しました．この「対話トピック」の性質や対話中における位置付けをより深掘りするための分析として，「対話トピック」の時間的推移の分析があります．ここでは対話トピックに含まれている単語に絞ったネットワークから，次数中心性係数の平均を算出し，その時間的推移に着目します．この分析からグループ全体で，それぞれの対話トピックに対して，どの時系列にどれだけ中心的に議論を深めていたのかを比較分析可能になります．</p>
+      <p>まず，先ほど分割した各対話トピックのワードリストを作成します．ワードリスト作成後，1つ目の対話トピック（サンプルデータでは対話トピックA）のワードリストをコピーし，「Word Selection Window」内の「Selected Word」下に貼り付けます（図12-6）．</p>
+      <a class="reference internal image-reference" href="images/12-2-図表_図06.jpg"><img alt="images/12-2-図表_図06.jpg" src="images/12-2-図表_図06.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-6　対話トピックのワードリストの貼り付け</p>
+      <p>生成されたネットワークから，次数中心性係数の平均を算出します．この分析では対話トピック間の比較を行うため，単語量の差による影響をなくす目的で次数中心性係数の平均を利用します．「Network – Words」のウィンドウ内からMetricsを選択し（図12-7），表示された「Metrics - Words」内「Activation」下の①「Degree Centrality」と「Open GraphMetricsViewer」下の②「Average of Degree Centrality」にチェックを入れ，③「Chart」を選択します（図12-8）．</p>
+      <a class="reference internal image-reference" href="images/12-2-図表_図07.jpg"><img alt="images/12-2-図表_図07.jpg" src="images/12-2-図表_図07.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-7　Metricsの選択</p>
+      <a class="reference internal image-reference" href="images/12-2-図表_図08.jpg"><img alt="images/12-2-図表_図08.jpg" src="images/12-2-図表_図08.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-8　Metricsでの次数中心性係数の平均の算出</p>
+      <p>「MetricsChartViewer - Word」ウィンドウが表示され，算出された対話トピック内単語の次数中心性係数の平均からグラフが生成されます（図12-9）．この後に行うグラフ間の比較のためにExcelなどの外部ツールを利用することから，「Export」から「CSV（be saved to metrics.csv）」を選択し，数値データを保存します．これによって，「metrics.csv」（ファイルは「kbdex/metrics.csv」にあります）として，今回算出した次数中心性係数の総和の数値データが保存されます．このデータを別のフォルダなどにコピーし，１つ目の対話トピックの算出結果であることを識別できるようにして残しておきましょう．</p>
+
+      <!-- 「kbdex/metrics.csv」飛ばし設定 -->
+
+      <a class="reference internal image-reference" href="images/12-2-図表_図09.jpg"><img alt="images/12-2-図表_図09.jpg" src="images/12-2-図表_図09.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-9　計算結果の保存</p>
+      <p>ここまでの作業を，残りの対話トピック（今回は対話トピックB〜D）についても行います．全ての対話トピックにおける次数中心性係数の平均のデータが揃った段階で，対話トピックの時間的推移の比較グラフを作成します．Excelなどのグラフ作成が可能な表計算ツールにここまでに出力してきたデータをコピーします．図12-10のExcel添付例のように縦軸に対話トピック，横軸に対話ターンを設定し，対応する数値データを出力したデータファイルからコピーしていきます．</p>
+      <a class="reference internal image-reference" href="images/12-2-図表_図10.jpg"><img alt="images/12-2-図表_図10.jpg" src="images/12-2-図表_図10.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-10　Excelへの算出データ添付例</p>
+      <p>作成した表から折れ線グラフを作成すると，図12-11のようなグラフが完成します．</p>
+      <a class="reference internal image-reference" href="images/12-2-図表_図11.jpg"><img alt="images/12-2-図表_図11.jpg" src="images/12-2-図表_図11.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図12-11　サンプルデータから実際に出力した対話トピックの時間的推移比較グラフ例</p>
+      <p>図12-11のように出力されたグラフから，各対話トピックの次数中心性係数の平均がどの時系列において上昇したか，もしくは下降したか，に着目して比較分析を行います．これから，対話の時系列に沿ってクラスタ分析によって明らかになった対話トピックがどのタイミングで話題の中心となったか，逆に話題の中心から遠ざかっていったか，という対話の変遷を解釈することが可能になります．</p>
+    </div>
+
+    <div class="section" id="id4">
+      <h1>参考文献リスト<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+      <ul id="refs-list">
+        <li>川久保アンソニージェイ太稀，大島純，大島律子 (2021). 知識構築活動におけるアイディア向上プロセス分析に基づく学習成果を向上させる条件．日本教育工学会論文誌，45(1), 31-41. <a class="hyperlink" href="https://doi.org/10.15077/jjet.44120">https://doi.org/10.15077/jjet.44120</a></li>
+        <li>川久保アンソニージェイ太稀，大島純，大島律子 (2022). ブレンド型授業を用いた知識構築実践の設計と評価：知識構築分析学からのアプローチ．日本教育工学会論文誌，46(4), 617-629. <a class="hyperlink" href="https://doi.org/10.15077/jjet.46021">https://doi.org/10.15077/jjet.46021</a></li>
+      </ul>
+    </div>
+
+    <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="temporal-model.html" class="btn btn-neutral float-left" title="11. 時変モデル" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <!-- <a href="env-setting_java.html" class="btn btn-neutral float-right" title="2. 環境設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a> -->
+      </div>
+      <hr/>
+      <div role="contentinfo">
+        <!-- <p>&copy; Copyright 2024-2027, Oshima Lab.</p> -->
+        <div class="footer-content">
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeX Manual</span> &copy; 2024 by <span property="cc:attributionName">Oshima Lab. (Faculty of Informatics, Shizuoka University)</span> is licensed under <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeXマニュアル</span> &copy; 2024 の著作権は<span property="cc:attributionName">大島研究室（静岡大学情報学部）</span>に帰属します．一次利用・二次利用についてはクリエイティブ・コモンズ <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0</a> のルールに従ってください．</p>
+        </div>
+      </div> 
+    </footer>
+  </div>
+  <script src="../js/copy-to-clipboard.js"></script>
+</body>
+</html>

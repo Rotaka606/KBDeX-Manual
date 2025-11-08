@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja" >
+<head>
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  
+  <title>1. はじめに｜KBDeXマニュアル</title>
+</head>
+
+<body>
+  <div id="navigation-window">
+    <nav>
+      <a href="../index.html" class="icon icon-home"><i class="fas fa-home"></i> KBDeX マニュアル</a>
+      <div id="navigation-list">
+        <div class="navigation">
+          <p>基礎編</p>
+          <ol class="index">
+            <li><a href="introduction.html">はじめに</a></li>
+            <li><a href="env-setting_java.html">環境設定</a></li>
+            <li><a href="env-setting_kbdex.html">KBDeXの準備</a></li>
+            <li><a href="sample-data.html">サンプルデータ</a></li>
+            <li><a href="data-preperation.html">分析データの準備</a></li>
+            <li><a href="kbdex-activation.html">KBDeXの起動</a></li>
+            <li><a href="unit-of-analysis.html">分析単位の設定</a></li>
+            <li><a href="network-analysis.html">ネットワーク分析</a></li>
+          </ol>
+        </div>        
+
+        <div class="navigation">
+          <p>応用編</p>
+          <ol class="index" start="9">
+            <li><a href="../advanced/aggregative-model.html">累計モデル</a></li>
+            <li><a href="../advanced/moving-stanza-window-method.html">Moving Stanza Window Method</a></li>
+            <li><a href="../advanced/temporal-model.html">時変モデル</a></li>
+            <li><a href="../advanced/discourse-topic.html">対話トピック</a></li>
+          </ol>
+        </div>
+
+        <div class="navigation">
+          <p><a class="hyperlink" href="../references.html">参考文献リスト</a></p>
+          <p><a class="hyperlink" href="../credit.html">クレジット</a></p>
+        </div>
+      </div>        
+    </nav>
+  </div>
+
+  <div id="main-content">
+    <div class="section" id="id1">
+      <h1>1. はじめに<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+      <p><a class="hyperlink" href="https://www.kbdex.net/">KBDeX</a>（Oshima et al., 2012）は，知識構築の対話を分析するために，定性的な手法を用いて丹念に分析している研究者が，さらに定量的な手法を用いて，定性的手法と定量的手法の混合法で，研究目的にアプローチすることを可能とするために開発された，対話の社会ネットワーク分析ツールです．分析アルゴリズムは基本的なものを採用し，事変的なネットワークのパターンの推移を可視化して見ることができることに重点を置いて開発しました．ここでは，知識構築の対話に定量的手法を用いてアプローチするとはどういうことか，またどうして定量的手法が重要なのかについてまとめておきます．</p>
+      <p>まず，知識構築という文化的実践について端的に説明しておきましょう．知識構築という実践は，複数の人間が自分たちのアイディアを改善し続けていくために展開する実践活動の総称です．それぞれが持つアイディアは，初期段階ではすぐに役立つものではないかもしれませんが，他者と共有し，問題点を見出して改善し続ける努力をすれば，必ず良いアイディアへと成長していきます．こうした対話を知識構築の対話と呼び，多くの学習科学者たちは分析の対象としてきました．</p>
+      <p>知識構築の対話を分析する時の課題の一つが，その対話を通して構築されるであろう集団知を捉える手法です．これまで事例分析を通して，話者たちがどのように対話を通して自分たちの集団知をアイディアとして構築してきたかについて，深い洞察に基づいた分析が行われてきました．こうした定性的手法が個々の事例の本来の意味を明確にできるという特徴を持ちながら，より一般的な形で異なるグループ間を比較検討するためには，客観的な指標に基づく了解性の高い定量的な分析の必要性も議論されてきました．これまでの定量的な分析は，その多くが対話の特徴をパターンとして捉えることができませんでした．そこで，KBDeXでは，話者が利用する単語の共起関係に基づくネットワーク構造をもとに，対話の中で構築されていくであろう集団知の様相をある側面から可視化し，その構造を数値化することによって，客観的な指標に基づく知識構築の対話のグループ間比較を可能することを目指しました．</p>
+      <p>もちろん，ここで提案されている指標がどこまで妥当性を持ち，個々のグループの集団知の変遷を捉えることができているのかについては，さらなる議論が必要です．しかし，一方で，これまで行われてきた定性的分析の客観性を高める手法の一つとして価値があるものと考えられるでしょう．定性的分析から導き出される洞察を，仮説検証的なスキームで定量的に明らかにするために利用することも可能しょう．また，グループ間の違いをこの定量的手法を用いて逆行分析することによって，より深く違いを見出す重要な箇所を見出すために利用できることでしょう．どちらの方法でも，基本的に定性・定量混合法が基盤となっており，そのための一翼を担うツールとして利用することをお勧めします．</p>
+    </div>
+
+    <div class="section" id="id2">
+      <h1>参考文献<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+      <ul id="refs-list">
+        <li>Oshima, J., Oshima, R., & Matsuzawa, Y. (2012). Knowledge building discourse explorer: A social network analysis application for knowledge building discourse. <i>Educational Technology Research and Development</i>, 60(5), 903–921. </i><a class="hyperlink" href="https://doi.org/10.1007/s11423-012-9265-2">https://doi.org/10.1007/s11423-012-9265-2</a></li>
+      </ul>
+    </div>
+
+    <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../index.html" class="btn btn-neutral float-left" title="KBDeX マニュアル" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="env-setting_java.html" class="btn btn-neutral float-right" title="2. 環境設定" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      </div>
+      <hr/>
+      <div role="contentinfo">
+        <!-- <p>&copy; Copyright 2024-2027, Oshima Lab.</p> -->
+        <div class="footer-content">
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeX Manual</span> &copy; 2024 by <span property="cc:attributionName">Oshima Lab. (Faculty of Informatics, Shizuoka University)</span> is licensed under <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeXマニュアル</span> &copy; 2024 の著作権は<span property="cc:attributionName">大島研究室（静岡大学情報学部）</span>に帰属します．一次利用・二次利用についてはクリエイティブ・コモンズ <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0</a> のルールに従ってください．</p>
+        </div>
+      </div> 
+    </footer>
+  </div>
+  <script src="../js/copy-to-clipboard.js"></script>
+</body>
+</html>
