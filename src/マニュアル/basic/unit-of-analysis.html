@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja" >
+<head>
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  
+  <title>7. 分析単位の設定｜KBDeXマニュアル</title>
+</head>
+
+<body>
+  <div id="navigation-window">
+    <nav>
+      <a href="../index.html" class="icon icon-home"><i class="fas fa-home"></i> KBDeX マニュアル</a>
+      <div id="navigation-list">
+        <div class="navigation">
+          <p>基礎編</p>
+          <ol class="index">
+            <li><a href="introduction.html">はじめに</a></li>
+            <li><a href="env-setting_java.html">環境設定</a></li>
+            <li><a href="env-setting_kbdex.html">KBDeXの準備</a></li>
+            <li><a href="sample-data.html">サンプルデータ</a></li>
+            <li><a href="data-preperation.html">分析データの準備</a></li>
+            <li><a href="kbdex-activation.html">KBDeXの起動</a></li>
+            <li><a href="unit-of-analysis.html">分析単位の設定</a></li>
+            <li><a href="network-analysis.html">ネットワーク分析</a></li>
+          </ol>
+        </div>        
+
+        <div class="navigation">
+          <p>応用編</p>
+          <ol class="index" start="9">
+            <li><a href="../advanced/aggregative-model.html">累計モデル</a></li>
+            <li><a href="../advanced/moving-stanza-window-method.html">Moving Stanza Window Method</a></li>
+            <li><a href="../advanced/temporal-model.html">時変モデル</a></li>
+            <li><a href="../advanced/discourse-topic.html">対話トピック</a></li>
+          </ol>
+        </div>
+
+        <div class="navigation">
+          <p><a class="hyperlink" href="../references.html">参考文献リスト</a></p>
+          <p><a class="hyperlink" href="../credit.html">クレジット</a></p>
+        </div>
+      </div>        
+    </nav>
+  </div>
+
+  <div id="main-content">
+    <div class="section" id="id1">
+      <h1>7. 分析単位 (Unit of Analysis) の設定<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+
+      <div class="section" id="id2">
+        <h2>7.1. 言語設定<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>KBDeXは英語と日本語の対話データに対応しています．分析を始める前に，KBDeXが対話データを適切に処理できるよう，対話データの言語を設定します．</p>
+        <p>画面上部のツールバー内「Prop」をクリックし，「Discourse Properties」画面を開きます（図7-1）．対話データの言語に合わせて「Language」を選択します．サンプルデータは日本語なので，今回は「JAPANESE」を選択しましょう．最後に「OK」をクリックして画面を閉じます．</p>
+        <a class="reference internal image-reference" href="images/07-1-図表_01.jpg"><img alt="images/07-1-図表_01.jpg" src="images/07-1-図表_01.jpg" style="width: 500px;" /></a>
+        <p class="image-caption">図7-1　言語設定</p>
+      </div>
+
+      <div class="section" id="id3">
+        <h2>7.2. 分析で使用する単語の選択<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>言語設定が完了したら，分析で使用する単語を選択します．画面上部のツールバー内「Word」をクリックし，「Word Selection Window」画面を開きます（図7-2）．</p>
+        <a class="reference internal image-reference" href="images/07-2-図表_02.jpg"><img alt="images/07-2-図表_02.jpg" src="images/07-2-図表_02.jpg" style="width: 500px;" /></a>
+        <p class="image-caption">図7-2　単語選択画面</p>
+        <p>「Word Selection Window」画面で，中央の枠に表示された単語一覧から単語をダブルクリックすると，分析で使用する単語として選択できます．選択した単語は赤くハイライトされて表示されます．左の枠で直接単語リストを編集することもできます． </p>
+        <p>単語の選択が終了したら，「Word Selection Window」画面下の「OK」ボタンをクリックしてウィンドウを閉じます．</p>
+        <p>単語の選択がうまくいかない場合は，言語設定を見直してみてください（<a class="hyperlink" href="unit-of-analysis.html#2">7.1. 言語設定</a>を参照）．</p>
+      </div>
+
+      <div class="section" id="id4">
+        <h2>7.3. 単語を選択する上での注意点<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>分析単語を選択する上で，分析対象として選択したい単語が「Word Selection Window」画面中央の単語一覧に表示されないことがあります．（KBDeXでは，形態素解析ツールのChaSenを用いて単語の分割を行っているためです．）このような場合は，画面左の単語リストを直接編集し，「単語の統合・分割」や「新たな単語の追加」といった処理が必要です．サンプルデータを例に，単語リストを編集してみましょう．</p>
+        <p>なお，単語リストは「kbdex」内「data」フォルダに「word.txt」として保存されます．このファイルを直接編集してもよいでしょう．</p>
+        <p>「単語の統合・分割」では，単語一覧に表示された単語を統合・分割し，適切な単語を単語リストに追加します．サンプルデータを読み込むと，「Word Selection Window」画面を開いた時点で「グリーン」「ボンド」「エコ」「フレンドリー」といった単語が単語一覧に表示されています．そこで，画面左の単語リストをクリックし，「グリーンボンド」「エコフレンドリー」という単語を追加しましょう（図7-3）．他にも，「飲料水」や「ゼロウェイスト」といった単語を追加する必要があるでしょう．</p>
+        <p>逆に，「参加型」や「魅力的」といった単語は，接尾語を除いた「参加」や「魅力」のみを追加すればよいでしょう．ただし，「具体性」と「性」のように，接尾語が別の意味を持つ単語として使用される場合もあるため，注意が必要です．</p>
+        <a class="reference internal image-reference" href="images/07-3-図表_03.jpg"><img alt="images/07-3-図表_03.jpg" src="images/07-3-図表_03.jpg" style="width: 500px;" /></a>
+        <p class="image-caption">図7-3　単語リストを直接編集し，単語を追加する例</p>
+        <p>「新たな単語の追加」では，単語一覧に表示されない単語を同定し，追加します．サンプルデータでは，「エレクトロニック」や「フェス」といった単語を追加する必要があるでしょう．</p>
+        <p>これらの注意点を「前処理のポイント.txt」にまとめていますので，ご覧ください（<a class="hyperlink" href="sample-data.html">4. サンプルデータについて</a>も参照）．</p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="kbdex-activation.html" class="btn btn-neutral float-left" title="6. KBDeXの起動" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="network-analysis.html" class="btn btn-neutral float-right" title="8. ネットワーク分析" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      </div>
+      <hr/>
+      <div role="contentinfo">
+        <!-- <p>&copy; Copyright 2024-2027, Oshima Lab.</p> -->
+        <div class="footer-content">
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeX Manual</span> &copy; 2024 by <span property="cc:attributionName">Oshima Lab. (Faculty of Informatics, Shizuoka University)</span> is licensed under <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeXマニュアル</span> &copy; 2024 の著作権は<span property="cc:attributionName">大島研究室（静岡大学情報学部）</span>に帰属します．一次利用・二次利用についてはクリエイティブ・コモンズ <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0</a> のルールに従ってください．</p>
+        </div>
+      </div> 
+    </footer>
+  </div>
+  <script src="../js/copy-to-clipboard.js"></script>
+</body>
+</html>

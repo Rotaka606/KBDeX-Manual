@@ -1,10 +1,12 @@
-# KBDeX Mannual (version: 250106)
+# KBDeX Mannual
 HTML files and sample data.
 
 (c) 2025 by Oshima Lab. <br>
 Last modified: 2025.01.06.
 
 ## 基本的な使い方
+Zipファイルをダウンロードし，解凍してお使いください．
+
 「マニュアル」フォルダには，マニュアル本体が収録されています．
 HTMLファイルで記述されていますので，「index.html」を開いて閲覧してください．
 その他のファイルは操作不要です．

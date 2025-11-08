@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja" >
+<head>
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  
+  <title>8. ネットワーク分析｜KBDeXマニュアル</title>
+</head>
+
+<body>
+  <div id="navigation-window">
+    <nav>
+      <a href="../index.html" class="icon icon-home"><i class="fas fa-home"></i> KBDeX マニュアル</a>
+      <div id="navigation-list">
+        <div class="navigation">
+          <p>基礎編</p>
+          <ol class="index">
+            <li><a href="introduction.html">はじめに</a></li>
+            <li><a href="env-setting_java.html">環境設定</a></li>
+            <li><a href="env-setting_kbdex.html">KBDeXの準備</a></li>
+            <li><a href="sample-data.html">サンプルデータ</a></li>
+            <li><a href="data-preperation.html">分析データの準備</a></li>
+            <li><a href="kbdex-activation.html">KBDeXの起動</a></li>
+            <li><a href="unit-of-analysis.html">分析単位の設定</a></li>
+            <li><a href="network-analysis.html">ネットワーク分析</a></li>
+          </ol>
+        </div>        
+
+        <div class="navigation">
+          <p>応用編</p>
+          <ol class="index" start="9">
+            <li><a href="../advanced/aggregative-model.html">累計モデル</a></li>
+            <li><a href="../advanced/moving-stanza-window-method.html">Moving Stanza Window Method</a></li>
+            <li><a href="../advanced/temporal-model.html">時変モデル</a></li>
+            <li><a href="../advanced/discourse-topic.html">対話トピック</a></li>
+          </ol>
+        </div>
+
+        <div class="navigation">
+          <p><a class="hyperlink" href="../references.html">参考文献リスト</a></p>
+          <p><a class="hyperlink" href="../credit.html">クレジット</a></p>
+        </div>
+      </div>        
+    </nav>
+  </div>
+
+  <div id="main-content">
+    <div class="section" id="id1">
+      <h1>8. ネットワーク分析<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+      
+      <div class="section" id="id2">
+        <h2>8.1. ネットワークの出力<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>選択単語を選び，ネットワーク分析にかける準備ができたら，いよいよネットワークを出力します．左上の「Control」の「>」を押すと会話を１行（ID）分読み込みます（図8-1）．</p>
+        <a class="reference internal image-reference" href="images/08-1-図表_01.png"><img alt="images/08-1-図表_01.png" src="images/08-1-図表_01.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.1.　ネットワークの出力</p>
+        <p>Controlの「>|」を押すと全てのID（発話順番）を読み込みます（図8-2）．</p>
+        <a class="reference internal image-reference" href="images/08-1-図表_02.png"><img alt="images/08-1-図表_02.png" src="images/08-1-図表_02.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.2.　全行での分析結果</p>
+        <p>Controlの右にある「Start・Stop」についてです．「Start」をクリックすると，会話を自動で順送りし，ネットワークの経時的な変化を可視化します．</p>
+        <p>画面の見方について説明します（図8-3）．</p>
+        <a class="reference internal image-reference" href="images/08-1-図表_03.png"><img alt="images/08-1-図表_03.png" src="images/08-1-図表_03.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.3.　会話を順送り中（図は27行目）の画面</p>
+        <ol>
+          <li>ID（発話順番）のネットワーク（画面左下）では，選択単語が出現したID（発話順番）同士にリンクが追加されます．このようなネットワークを共起ネットワーク（co-occurrence network）といいます．</li>
+          <li>Author（発話者）のネットワーク（右上）では，選択単語に言及した発話者同士にリンクが追加されます．</li>
+          <li>選択単語のネットワーク（右下）では，発話に登場した選択単語がノードとして追加され，共起関係がリンクとして追加されます．</li>
+        </ol>
+      </div>
+
+      <div class="section" id="id3">
+        <h2>8.2. ネットワーク指標<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>ここでは，8.3以降で登場するネットワーク指標について簡単に説明します．より詳細に知りたい方は，書籍やインターネットに様々な情報がありますので，ご活用ください．</p>
+        <ul>
+          <li>次数中心性（degree centrality）：ネットワークにおけるあるノードが持つ直接の接続数（リンクの数）を指します．この値が高いノードは、ネットワーク内で中心的な役割を果たしていると言えます．</li>
+          <li>媒介中心性（betweenness centrality）：ネットワーク内の全ての最短経路のうち、特定のノードがどれだけ経由地点として機能しているかを示します．この指標が高いノードは、情報の流れにおいて重要な位置を占めています．</li>
+          <li>近接中心性（closeness centrality）：ネットワーク内の他の全ノードまでの平均的な最短距離がどれだけ短いかを測る指標です．値が高いノードほど、ネットワーク内の他のノードにとってアクセスしやすい、つまり中心に位置しています．</li>
+        </ul>
+      </div>
+
+      <div class="section" id="id4">
+        <h2>8.3. ネットワーク指標の出力<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>ここでは，ネットワークにおける次数中心性係数の総和，および，単語ごとの次数中心性係数の変化を出力する方法を紹介します．</p>
+        <p>次数中心性係数の総和を見たい場合は，まず，右下「Words」の枠の左上のタブ「Metrics」をクリックします（図8-4）．</p>
+        <a class="reference internal image-reference" href="images/08-3-図表_04.png"><img alt="images/08-3-図表_04.png" src="images/08-3-図表_04.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.4.　Metricsを選択（画面右下）</p>
+        <p>左枠（Activation）：中心性の種類一覧の選択ボックス，Degree Centralityをクリックします．</p>
+        <p>中枠（Open Graph Metrics Viewer）：次数中心性係数の総和（Total）や平均（Average）を見たい場合にクリックします．今回は総和（Total of Degree Centrality）をクリックします（図8-5）．</p>
+        <a class="reference internal image-reference" href="images/08-3-図表_05.png"><img alt="images/08-3-図表_05.png" src="images/08-3-図表_05.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.5.　次数中心性係数の総和を見たい場合の設定</p>
+        <p>チェックを入れた後，同枠の「Chart」ボタンをクリックします（図8-6）．</p>
+        <a class="reference internal image-reference" href="images/08-3-図表_06.png"><img alt="images/08-3-図表_06.png" src="images/08-3-図表_06.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.6.　次数中心性係数の総和の結果</p>
+        <p>次数中心性係数の変化をざっくりと見ることができます．次数中心性の総和を選んだ場合．各段階でのグループにおける次数中心性の合計値を計算してくれます．結果をcsv形式に保存する場合は，出てきたグラフの画面の左上「Export」ボタンを押して「CSV」を選択します（図8-7）</p>
+        <a class="reference internal image-reference" href="images/08-3-図表_07.png"><img alt="images/08-3-図表_07.png" src="images/08-3-図表_07.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.7.　次数中心性係数の総和の結果</p>
+        <p>※KBDeXのバージョンによってCSVボタンが存在しない場合があります．</p>
+        <p>単語ごとの次数中心性係数を見たい場合は，まず，右下「Words」の枠の左上のタブ「Metrics」をクリックします（図8-8）．</p>
+        <a class="reference internal image-reference" href="images/08-3-図表_08.png"><img alt="images/08-3-図表_08.png" src="images/08-3-図表_08.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.8.　単語ごとの次数中心性係数の変化を見たい場合の設定</p>
+        <p>右下「Words」の枠の左上のタブ「Metrics」をクリックし，左枠（Activation）の「Degree centrality」をクリックします．右枠（Open Node Metrics Viewer）の「Degree centrality」を選択し，同枠の「Chart」ボタンをクリックします．</p>
+        <p>単語ごとの次数中心性の変化を見ることができます（図8-9）同じタイミングでチャートが上がっているものは共起関係が大きく，同じ文脈で話されていることを意味します．発話内容をより深く掘り下げて分析する際にはこの手法が適切な場合があります．</p>
+        <a class="reference internal image-reference" href="images/08-3-図表_09.png"><img alt="images/08-3-図表_09.png" src="images/08-3-図表_09.png" style="width: 500px;" /></a>
+        <p class="image-caption">図8.9.　単語ごとの次数中心性係数の変化</p>
+      </div>
+
+      <div class="section" id="id5">
+        <h2>8.4. その他のボタン<a class="headerlink" href="#id5" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>ここではKBDeXに搭載されている機能の中でこれまでに説明していなかったものを簡単に説明します（図8-10）．</p>
+        <a class="reference internal image-reference" href="images/08-4-図表_10.jpg"><img alt="images/08-4-図表_10.jpg" src="images/08-4-図表_10.jpg" style="width: 500px;" /></a>
+        <p class="image-caption">図8.10.　KBDeXに実装されているその他の機能</p>
+        <ol>
+          <li>No□Go：数字を入力すると任意の発話順までのネットワークを生成できます．</li>
+          <li>Word：分析対象の単語の設定ができます．</li>
+          <li>Agent：分析対象のAuthorの除外・追加設定ができます．</li>
+          <li>Time：対話データのCSVファイルに「Time」列を作り，UNIXTIME（13桁）を入れておくと，発話順番を時系列で表示することができます．</li>
+          <li>Prop：言語（日本語），分析対象（基本NOTE），Lifetimeを設定できます．Lifetimeは，一定間隔新しい共起が発生しなかった場合その単語をネットワークから除外する（共起関係を外す）機能です．詳しくは<a class="hyperlink" href="../advanced/temporal-model.html#2">11.1. 時変ネットワーク分析</a>で解説されています．</li>
+          <li>SS：KBDeXウィンドウ全体のスクリーンショットが撮れます．</li>
+          <li>[A]：Agentの枠（右上）を拡大したウィンドウを生成できます．</li>
+          <li>[U]：Unitsの枠（左下）を拡大したウィンドウを生成できます．</li>
+          <li>[W]：Wordsの枠（右下）を拡大したウィンドウを生成できます．</li>
+          <li>[Tronto]：ウィンドウを拡大や縮小，移動した後に押すとデフォルトのウィンドウ表示に戻すことができます．</li>
+          <li>[BSL-Wd]：全単語の次数中心性係数の総和及び単語ごとの次数中心性係数の推移を表示します．</li>
+          <li>[BSL-Ut]：全対話ターンの次数中心性係数の総和及びターンごとの次数中心性係数の推移を表示します．</li>
+        </ol>
+      </div>
+    </div>
+
+    <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="unit-of-analysis.html" class="btn btn-neutral float-left" title="7. 分析単位の設定" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../advanced/aggregative-model.html" class="btn btn-neutral float-right" title="9. 累計モデル" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      </div>
+      <hr/>
+      <div role="contentinfo">
+        <!-- <p>&copy; Copyright 2024-2027, Oshima Lab.</p> -->
+        <div class="footer-content">
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeX Manual</span> &copy; 2024 by <span property="cc:attributionName">Oshima Lab. (Faculty of Informatics, Shizuoka University)</span> is licensed under <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeXマニュアル</span> &copy; 2024 の著作権は<span property="cc:attributionName">大島研究室（静岡大学情報学部）</span>に帰属します．一次利用・二次利用についてはクリエイティブ・コモンズ <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0</a> のルールに従ってください．</p>
+        </div>
+      </div> 
+    </footer>
+  </div>
+  <script src="../js/copy-to-clipboard.js"></script>
+</body>
+</html>

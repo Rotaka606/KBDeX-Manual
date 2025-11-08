@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja" >
+<head>
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  
+  <title>5. 分析データの準備｜KBDeXマニュアル</title>
+</head>
+
+<body>
+  <div id="navigation-window">
+    <nav>
+      <a href="../index.html" class="icon icon-home"><i class="fas fa-home"></i> KBDeX マニュアル</a>
+      <div id="navigation-list">
+        <div class="navigation">
+          <p>基礎編</p>
+          <ol class="index">
+            <li><a href="introduction.html">はじめに</a></li>
+            <li><a href="env-setting_java.html">環境設定</a></li>
+            <li><a href="env-setting_kbdex.html">KBDeXの準備</a></li>
+            <li><a href="sample-data.html">サンプルデータ</a></li>
+            <li><a href="data-preperation.html">分析データの準備</a></li>
+            <li><a href="kbdex-activation.html">KBDeXの起動</a></li>
+            <li><a href="unit-of-analysis.html">分析単位の設定</a></li>
+            <li><a href="network-analysis.html">ネットワーク分析</a></li>
+          </ol>
+        </div>        
+
+        <div class="navigation">
+          <p>応用編</p>
+          <ol class="index" start="9">
+            <li><a href="../advanced/aggregative-model.html">累計モデル</a></li>
+            <li><a href="../advanced/moving-stanza-window-method.html">Moving Stanza Window Method</a></li>
+            <li><a href="../advanced/temporal-model.html">時変モデル</a></li>
+            <li><a href="../advanced/discourse-topic.html">対話トピック</a></li>
+          </ol>
+        </div>
+
+        <div class="navigation">
+          <p><a class="hyperlink" href="../references.html">参考文献リスト</a></p>
+          <p><a class="hyperlink" href="../credit.html">クレジット</a></p>
+        </div>
+      </div>        
+    </nav>
+  </div>
+
+  <div id="main-content">
+    <div class="section" id="id1">
+      <h1>5. 分析データの準備<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+      <div class="section" id="id2">
+        <h2>5.1. 対話データの構造<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>KBDeXでは，発話順番，発話者，発話内容の情報を含む対話データを読み込み，知識構築の対話として分析できます（<a class="hyperlink" href="./introduction.html">1. はじめに</a>も参照）．ここでは，サンプルデータを例に，対話データの構造について説明します．</p>
+        <p>サンプルデータを図5-1に示します．Idは発話順番，Authorは発話者，Textは発話内容を表します．会話順番が交わされるごとに対話データが長くなることが分かります．なお，サンプルデータではGroupとTimeという列が追加されていますが，マニュアルでは割愛します（その他の機能については<a class="hyperlink" href="./network-analysis.html#id5">8.4. その他のボタン</a>を参照してください）．</p>
+        <a class="reference internal image-reference" href="images/05-1-図表_01.jpg"><img alt="images/05-1-図表_01.jpg" src="images/05-1-図表_01.jpg" style="width: 500px;" /></a>
+        <p class="image-caption">図5-1　サンプルデータ</p>
+      </div>
+
+      <div class="section" id="id3">
+        <h2>5.2. 対話データの準備<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>ここでは，サンプルデータを例に，KBDeXで対話データを読み込む準備について説明します．</p>
+        <p>はじめに，分析する対話データを用意します．ELANやその他のツールを使って対話を文字起こしした場合，KBDeXで扱える対話データの構造に変換する必要があります（参照：<a class="hyperlink" href="./data-preperation.html#2">5.1. 対話データの構造</a>）．対話データはCSV形式で作成し，「data.csv」というファイル名にしてください．</p>
+        <p>「kbdex」フォルダ内「データ」フォルダに任意のフォルダ    を作成し，「data.csv」を配置します．今回は「船とギター」というフォルダを作成し，サンプルデータを保存します（図5-2，5-3）．これで，対話データをKBDeXで分析する準備が整いました．</p>
+        <a class="reference internal image-reference" href="images/05-2-図表_02.jpg"><img alt="images/05-2-図表_02.jpg" src="images/05-2-図表_02.jpg" style="width: 500px;" /></a>
+        <p class="image-caption">図5-2　対話データを保存するフォルダ（Windows）</p>
+        <a class="reference internal image-reference" href="images/05-2-図表_03.jpg"><img alt="images/05-2-図表_03.jpg" src="images/05-2-図表_03.jpg" style="width: 500px;" /></a>
+        <p class="image-caption">図5-3　対話データを保存するフォルダ（Mac）</p>
+      </div>
+
+      <div class="section" id="id4">
+        <h2>5.3. 対話データの整形<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h2>
+        <p>対話データを整形することで，分析の妥当性を向上させることができます．データの整形では，主に「記述のゆらぎ」と「指示語」を修正します．サンプルデータを例に，対話データを整形してみましょう．</p>
+        <p>「記述のゆらぎ」とは，文字起こしの過程で，同じ意味を持つ単語を異なる表記によって記述することを指します．たとえば，サンプルデータでは，「アイディア」と「アイデア」，「クルーズ」と「船旅」，「たしかに」と「確かに」といった記述のゆらぎが確認できます．</p>
+        <p>記述のゆらぎを整形する過程では，類似する単語によって異なる意味を表現している場合に注意が必要です．たとえば，サンプルデータでは「クルーズ船」と「船」という2つの単語が混在していますが，「クルーズ船」を略して「船」と発話しているケースと，より広範な意味を持たせて「船」と発話しているケースがあります  ．同様に，「旅」という単語についても，「クルーズ」や「船旅」を略した単語なのか，より一般化した単語なのかについて，十分検討する必要があるでしょう．</p>
+        <p>「指示語」の整形では，「それ」や「この」といった指示語を，指示内容で置き換えます．指示語の整形においても，単語のニュアンスや文脈を十分考慮することが重要です．たとえば，あいづちに指示語が含まれる場合がありますが，必ずしも整形する必要はありません．指示語を置換することで，発話内容が発話者の意図を超えてしまう可能性があるからです．</p>
+        <p>整形したサンプルデータを「サンプルデータ_クレンジング例.csv」として配布していますので，こちらもご覧ください（<a class="hyperlink" href="./sample-data.html">4. サンプルデータについて</a>）．</p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="sample-data.html" class="btn btn-neutral float-left" title="4. サンプルデータについて" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="kbdex-activation.html" class="btn btn-neutral float-right" title="6. KBDeXの起動" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      </div>
+      <hr/>
+      <div role="contentinfo">
+        <!-- <p>&copy; Copyright 2024-2027, Oshima Lab.</p> -->
+        <div class="footer-content">
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeX Manual</span> &copy; 2024 by <span property="cc:attributionName">Oshima Lab. (Faculty of Informatics, Shizuoka University)</span> is licensed under <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeXマニュアル</span> &copy; 2024 の著作権は<span property="cc:attributionName">大島研究室（静岡大学情報学部）</span>に帰属します．一次利用・二次利用についてはクリエイティブ・コモンズ <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0</a> のルールに従ってください．</p>
+        </div>
+      </div> 
+    </footer>
+  </div>
+  <script src="../js/copy-to-clipboard.js"></script>
+</body>
+</html>
