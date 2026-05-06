@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja" >
+<head>
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="../css/style.css" rel="stylesheet" type="text/css" media="all">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  
+  <title>9. 累計モデル｜KBDeXマニュアル</title>
+</head>
+
+<body>
+  <div id="navigation-window">
+    <nav>
+      <a href="../index.html" class="icon icon-home"><i class="fas fa-home"></i> KBDeX マニュアル</a>
+      <div id="navigation-list">
+        <div class="navigation">
+          <p>基礎編</p>
+          <ol class="index">
+            <li><a href="../basic/introduction.html">はじめに</a></li>
+            <li><a href="../basic/env-setting_java.html">環境設定</a></li>
+            <li><a href="../basic/env-setting_kbdex.html">KBDeXの準備</a></li>
+            <li><a href="../basic/sample-data.html">サンプルデータ</a></li>
+            <li><a href="../basic/data-preperation.html">分析データの準備</a></li>
+            <li><a href="../basic/kbdex-activation.html">KBDeXの起動</a></li>
+            <li><a href="../basic/unit-of-analysis.html">分析単位の設定</a></li>
+            <li><a href="../basic/network-analysis.html">ネットワーク分析</a></li>
+          </ol>
+        </div>        
+
+        <div class="navigation">
+          <p>応用編</p>
+          <ol class="index" start="9">
+            <li><a href="aggregative-model.html">累計モデル</a></li>
+            <li><a href="moving-stanza-window-method.html">Moving Stanza Window Method</a></li>
+            <li><a href="temporal-model.html">時変モデル</a></li>
+            <li><a href="discourse-topic.html">対話トピック</a></li>
+          </ol>
+        </div>
+
+        <div class="navigation">
+          <p><a class="hyperlink" href="../references.html">参考文献リスト</a></p>
+          <p><a class="hyperlink" href="../credit.html">クレジット</a></p>
+        </div>
+        </div>
+        
+    </nav>
+  </div>
+
+  <div id="main-content">
+    <div class="section" id="id1">
+      <h1>9. 累計モデル (Aggregative model)<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+    </div>
+
+    <div class="section" id="id2">
+      <h2>9.1.個人貢献の算出<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">  <i class="fas fa-link"></i></a></h2>
+      <p>累計モデル（Aggregative Model）による分析は，分析対象となるグループやそこに所属する個人が活動中に行った対話において，全体としてどれだけの単語間の共起関係を生成することができたか，という点に着目した分析です．グループ全体で生成された単語間の共起関係に対して，各メンバーがそのうちどれだけの単語間の共起関係を生成できていたかを比較することで，グループ対話の特定の内容に対してどれだけ貢献できていたかを測ることが可能です． </p>
+
+      <!-- 累計モデル（Aggregative Model）飛ばし設定 -->
+
+      <p>この個人貢献を分析するために，グループと所属メンバーそれぞれの次数中心性係数の総和を対話の時系列に沿って算出し，その推移を比較します． </p>
+      <p>まず，<a class="hyperlink" href="../basic/unit-of-analysis.html">7. 分析単位の設定</a>で紹介した基本的な分析を行う時と同様に[Word]タブから分析対象としたい単語を選択します．ここで選択した単語群全体に対する個人貢献を分析することとなります．</p>
+      <p>次に，グループ全体の次数中心性係数の総和の推移を算出します．「Network – Words」のウィンドウ内からMetricsを選択し（図9-1），表示された「Metrics - Words」内「Activation」下の①「Degree Centrality」と「Open GraphMetricsViewer」下の②「Total of Degree Centrality」にチェックを入れ，③「Chart」を選択します（図9-2）． </p>
+      <a class="reference internal image-reference" href="images/09-1-図表_図01.jpg"><img alt="images/09-1-図表_図01.jpg" src="images/09-1-図表_図01.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図9-1　Metricsの選択</p>
+      <a class="reference internal image-reference" href="images/09-1-図表_図02.jpg"><img alt="images/09-1-図表_図02.jpg" src="images/09-1-図表_図02.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図9-2　Metricsでの次数中心性係数の総和の算出</p>
+      <p>「MetricsChartViewer - Word」ウィンドウが表示され，算出されたグループ全体の次数中心性係数の総和からグラフが生成されます（図9-3）．この後に行うグラフ間の比較のためにExcelなどの外部ツールを利用することから，「Export」から「CSV（be saved to metrics.csv）」を選択し，数値データを保存します．これによって， 「metrics.csv」（ファイルは「kbdex/metrics.csv」にあります）として，今回算出した次数中心性係数の総和の数値データが保存されます．このデータを別のフォルダなどにコピーし，グループの算出結果であることを識別できるようにして残しておきましょう． </p>
+      <a class="reference internal image-reference" href="images/09-1-図表_図03.jpg"><img alt="images/09-1-図表_図03.jpg" src="images/09-1-図表_図03.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図9-3　計算結果の保存</p>
+      <p>ここからは，グループに所属しているメンバー個人の次数中心性係数の総和を算出します．サンプルデータでは３人の学生（A〜C）の対話を扱っているため，3人分の計算作業が必要です．</p>
+      <p>個人ごとの次数中心性係数の総和を算出するため，「Network - Students」のウィンドウから1人目のメンバーノードを選択（左クリック）した後 ，右クリックします（今回は学生A）．表示されるメニューの中下から「Show Selected Node(s) and Hide others」を選択します（図9-４）．</p>
+      <a class="reference internal image-reference" href="images/09-1-図表_図04.jpg"><img alt="images/09-1-図表_図04.jpg" src="images/09-1-図表_図04.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図9-4　次数中心性係数の総和を算出する個人を選択</p>
+      <p>これによって，学生Aの発言によって起こった共起関係のみでネットワークが再構築され，学生A個人の次数中心性係数の総和が算出可能な状態になります．ここまで設定が終わったら，先ほどグループの次数中心性係数の総和を算出した手順と全く同じ手順で「MetricsChartViewer - Word」ウィンドウを開き，「Export」からデータを出力します．出力された「metrics.csv」について，出力したデータが学生Aの算出結果であることが識別できるようにした上で別のフォルダにコピーしておきます．</p>
+      <p>「Network - Students」で行った個人の選択からデータの出力までの手順を，残りのグループメンバー（今回は学生B・C）についても同様に行います．</p>
+    </div>
+
+    <div class="section" id="id3">
+      <h2>9.2. 個人貢献比較グラフの作成<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">  <i class="fas fa-link"></i></a></h2>
+      <p>グループおよび各グループメンバー全員分の次数中心性係数の総和のデータが出力できた段階で，個人貢献の比較用のグラフを作成します．Excelなどのグラフ作成が可能な表計算ツールにここまでに出力してきたデータをコピーします．図9-5のExcel添付例のように縦軸にグループやメンバー，横軸に対話ターンを設定し，対応する数値データを出力したデータファイルからコピーしていきます．</p>
+      <a class="reference internal image-reference" href="images/09-2-図表_図05.jpg"><img alt="images/09-2-図表_図05.jpg" src="images/09-2-図表_図05.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図9-5　Excelへの算出データ添付例</p>
+      <p>完成したデータ表を選択し，折れ線グラフを作成すると図9-6のようなグラフが出力されます．</p>
+      <a class="reference internal image-reference" href="images/09-2-図表_図06.jpg"><img alt="images/09-2-図表_図06.jpg" src="images/09-2-図表_図06.jpg" style="width: 500px;" /></a>
+      <p class="image-caption">図9-6　サンプルデータから実際に出力した個人貢献比較グラフ例</p>
+      <p>図9-6のように出力されたグラフから，グループ全体の次数中心性係数の総和の推移に対して，各メンバーの同値の推移がどのようになっているか，に着目し比較分析を行います．各時系列の貢献 については，グループの次数中心性係数の総和に最も数値が近いメンバーは誰であるか，を比較し貢献度の高いメンバーを同定します．継続的な貢献については，グループグラフの推移形に対して最も近い推移形を持っているメンバーが誰であるか，を比較することで貢献度の高いメンバーの同定が可能です（川久保ほか，2021） ．</p>
+
+      <!-- 引用はどうする？ -->
+
+    </div>
+
+    <div class="section" id="id4">
+      <h1>参考文献<a class="headerlink" href="#id4" title="このヘッドラインへのパーマリンク"> <i class="fas fa-link"></i></a></h1>
+      <ul id="refs-list">
+        <li>川久保アンソニージェイ太稀，大島純，大島律子 (2021). 知識構築活動におけるアイディア向上プロセス分析に基づく学習成果を向上させる条件．日本教育工学会論文誌，45(1), 31-41. <a class="hyperlink" href="https://doi.org/10.15077/jjet.44120">https://doi.org/10.15077/jjet.44120</a></li>
+      </ul>
+    </div>
+
+    <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../basic/network-analysis.html" class="btn btn-neutral float-left" title="8. ネットワーク分析" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="moving-stanza-window-method.html" class="btn btn-neutral float-right" title="10. moving-stanza-window-method" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      </div>
+      <hr/>
+      <div role="contentinfo">
+        <!-- <p>&copy; Copyright 2024-2027, Oshima Lab.</p> -->
+        <div class="footer-content">
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeX Manual</span> &copy; 2024 by <span property="cc:attributionName">Oshima Lab. (Faculty of Informatics, Shizuoka University)</span> is licensed under <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
+          <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">KBDeXマニュアル</span> &copy; 2024 の著作権は<span property="cc:attributionName">大島研究室（静岡大学情報学部）</span>に帰属します．一次利用・二次利用についてはクリエイティブ・コモンズ <a class="hyperlink" href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0</a> のルールに従ってください．</p>
+        </div>
+      </div> 
+    </footer>
+  </div>
+  <script src="../js/copy-to-clipboard.js"></script>
+</body>
+</html>

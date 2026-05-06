@@ -1,0 +1,228 @@
+body p {
+    margin: 25px 0;
+}
+
+/* navigation */
+#navigation-window {
+    position: fixed; /* ナビゲーションバーを固定位置に */
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%; /* 高さを画面全体に */
+    background-color: #337AB7;
+    padding: 20px;
+    font-family: "Yu Gothic UI", "游ゴシック UI", sans-serif;
+    color: white;
+    overflow-y: auto; /* 縦スクロールを有効にする */
+}
+
+#navigation-window p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+#navigation-window a {
+    display: block; /* ブロック要素として表示 */
+    margin: 10px 0;
+    text-decoration: none; /* テキストの下線を消去 */
+    color: white;
+}
+
+.icon.icon-home {
+    /* font-size: large; */
+    font-weight: bold;
+    text-align: center;
+    /* padding-bottom: 10px; */
+}
+
+.search-window {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 6px 12px;
+    padding-left: 40px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: gray;
+}
+
+.search-button {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #494949;
+}
+
+#navigation-list {
+    padding-left: 10px;
+    padding-bottom: 20px;
+}
+
+.navigation {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+.index {
+    padding-left: 35px;
+}
+
+/* main content */
+#main-content {
+    margin-left: 230px; /* ナビゲーションバーの幅+余白を考慮 */
+    /* padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 0px; */
+    padding: 0 10vw;
+    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Meiryo", "メイリオ", sans-serif;
+}
+
+/* #main-content p {
+    margin: 25px 0;
+} */
+
+h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .headerlink {
+    display: inline;
+}
+
+.headerlink .fas {
+    color: #337AB7; /* アイコンの色 */
+    font-size: 16px; /* アイコンのサイズ */
+}
+
+.hyperlink, .reflink, .ref {
+    text-decoration: none;
+    color: #337AB7;
+}
+
+.headerlink {
+    display: none;
+    color: #337AB7;
+    text-decoration: none;
+}
+
+.reference.internal.image-reference {
+    display: block; /* これにより、上下の余白が適切に適用されます */
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+p.image-caption {
+    /* font-size: small; */
+    /* font-weight: bold; */
+    color: #494949;
+    margin-top: 0px;
+}
+
+/* for credit.html */
+/* .credit {
+    background: #fafafa;
+} */
+
+.credit-caption {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.credit-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.credit-list li {
+    display: flex;
+    justify-content: space-between; /* 左右の要素を両端に配置 */
+    align-items: center;
+    padding: 5px 0;
+    position: relative;
+}
+
+.credit-name {
+    flex-shrink: 0;
+    white-space: nowrap; /* 左のテキストが折り返されないようにする */
+}
+
+.credit-dot::before {
+    content: "";
+    flex-grow: 1; /* 余白を埋める */
+    border-bottom: 1px dotted black; /* ドットリーダーのスタイル */
+    margin: 0 10px; /* 両サイドのスペースを設定 */
+}
+
+.credit-title {
+    flex-shrink: 0;
+    white-space: nowrap; /* 右のテキストが折り返されないようにする */
+    margin-left: 10px; /* 右側に少しスペースを追加 */
+}
+/* end of for credit.html */
+
+/* footer */
+footer {
+    padding-top: 20px;
+}
+
+footer hr {
+    background-color: #727272;
+}
+
+footer p {
+    color: #727272;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #e2e6ea;
+    color: #494949;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #cbd0d4;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+float: right;
+}
+
+.fa-arrow-circle-right, .fa-arrow-circle-left {
+    margin-right: 5px;
+}
+
+/* フッターのクリアフィックス */
+.rst-footer-buttons::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.footer-content {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
