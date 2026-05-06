@@ -2,7 +2,7 @@
 HTML files and sample data.
 
 (c) 2025 by Oshima Lab. <br>
-Last modified: 2025.11.08.
+Last modified: 2026.05.06
 
 ## 基本的な使い方
 Zipファイルをダウンロードし，解凍してお使いください．
